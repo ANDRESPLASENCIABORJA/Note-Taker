@@ -1,27 +1,23 @@
 // DEPENDENCIES
 // First we have to get a series of npm packages that we will use to give our server useful functionality
 
-const express = require('express');
+// Require express to handle the routing
+const express = require("express");
+// Require apiRoutes file to handle the js routes
+const apiRoutes = require("./routes/apiRoutes");
+// Require htmlRoutes file to handle html routes
+const htmlRoutes = require("./routes/htmlRoutes");
 
-// Tell node that we are creating an express server
+// Initialize the app and create a port
 const app = express();
-
-// Sets up an initiall port. We will use this later in our listener
-const PORT = 8080;
+const PORT = process.env.PORT || 8080;
 
 // Sets up the express const app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-
-// ROUTER
-// The next points our server to a series of "route files".
-// This routes give our server a 'map' of how to respond when users visit or request data from various urls.
-
-require('../../../routes/htmlRoutes.js')(app);
+app.use(express.static("public"));
+app.use("/api", apiRoutes);
+app.use("/", htmlRoutes);
 
 // LISTENER
 // The below code effectively "starts" our server
-
-app.listen(PORT, () => {
-  console.log(`App listening on PORT: ${PORT}`);
-});
+app.listen(PORT, () => console.log(`App listening on PORT: ${PORT}`));
