@@ -1,7 +1,7 @@
 // Require the router and the db file
 const save = require("../db/db.json");
 
-// Require file system
+// Require file system to save the notes
 const fs = require('fs');
 
 // Require uuid to give each note a unique id
