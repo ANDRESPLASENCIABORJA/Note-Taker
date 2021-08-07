@@ -33,4 +33,22 @@ module.exports = (app) => {
     res.json(newNote);
 
   });
+
+  // Last route to handle delate notes
+  app.delete("/api/notes/:id", async (req, res) => {
+    
+    // Create a constant to fetch the note by its id
+    let noteId = req.params.id.toString();
+
+    // Save the note into the json file, first read it and then push the new data
+    let newJson = await JSON.parse(fs.readFileSync('./db/db.json', 'utf-8'));
+    
+    let emptyData = newJson.filter(note => note.id.toString() !== noteId);
+    
+    fs.writeFileSync('./db/db.json', JSON.stringify(newJson));
+
+    // Send the new note to the client
+    res.json(emptyData);
+
+  });
 };
