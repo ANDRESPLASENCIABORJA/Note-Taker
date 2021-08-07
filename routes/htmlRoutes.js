@@ -15,6 +15,6 @@ router.get("/notes", (req, res) => {
   res.sendFile(path.join(__dirname + "./public/notes.html"));
 });
 
-// Export this routes so they can be used on the html file
+// Export the router so they can be used on the html file
 module.exports = router;
 
