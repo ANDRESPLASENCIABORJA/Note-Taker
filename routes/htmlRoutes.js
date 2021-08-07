@@ -1,22 +1,21 @@
-// We need to include the path package to get the correct file path for our html files
-
 const path = require('path');
+
+// This constant requires all the express functionalities
+const router = require('express').Router();
+// This constant uses the constant express that has inside it all the express functionalities
 
 // ROUTING FOR THE PATHS BETWEEN THE HTML DOCS
 
-module.exports = (app) => {
-    // => HTML GET REQUESTS
-    // Below code handles when users visit a page.
-    // In each of the below cases the user is shown an html page of content
+//Route for the index.html
+router.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname + "/public/index.html"));
+});
 
-    // GET /notes should return the notes.html file.
-    app.get("/notes", (req, res) => {
-        res.sendFile(path.join(__dirname, '../public/notes.html'));
-    });
+// Route for the contact form html
+router.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname + "/public/index.html"));
+});
 
-    // GET * should return the index.html file.
-    app.get('*', (req, res) => {
-        res.sendFile(path.join(__dirname, '../public/index.html'));
-    });
-};
+// Export this routes so they can be used on the html file
+module.exports = router;
 
