@@ -1,8 +1,7 @@
-const path = require('path');
-
 // This constant requires all the express functionalities
 const router = require('express').Router();
 // This constant uses the constant express that has inside it all the express functionalities
+const path = require('path');
 
 // ROUTING FOR THE PATHS BETWEEN THE HTML DOCS
 
