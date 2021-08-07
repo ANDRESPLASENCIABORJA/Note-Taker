@@ -7,12 +7,12 @@ const path = require('path');
 
 //Route for the index.html
 router.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname + "./public/index.html"));
+  res.sendFile(path.join(__dirname, "../public/index.html"));
 });
 
 // Route for the contact form html
 router.get("/notes", (req, res) => {
-  res.sendFile(path.join(__dirname + "./public/notes.html"));
+  res.sendFile(path.join(__dirname, "../public/notes.html"));
 });
 
 // Export the router so they can be used on the html file
