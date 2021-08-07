@@ -1,9 +1,14 @@
 // Require the router and the db file
-const save = require("../db/notes.js");
+const save = require("../db/db.json");
+
+// Require file system
+const fs = require('fs');
+
+// Require uuid to give each note a unique id
+const { v4: uuidv4 } = require('uuid');
+
 
 // ROUTING
-
-
 module.exports = (app) => {
   // We are telling the route to read the db.json file and return what is stored there
   app.get("/api/notes", (req, res) => res.json(save));
@@ -13,6 +18,9 @@ module.exports = (app) => {
     
     // Create a constant to recieve a new note and save it into the request body
     const newNote = req.body;
+
+    // Unique id for the new note
+    newNote.id = uuidv4();
 
     // Save the note into the json file
     save.push(newNote);
